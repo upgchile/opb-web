@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+
+@theme {
+  --font-inter: "Inter Variable", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --color-navy: #001e56;
+  --color-navy-light: #0a2d6e;
+  --color-navy-dark: #0A1628;
+  --color-navy-mid: #0a1e3d;
+  --color-red: #df3629;
+  --color-cyan: #6EE2F5;
+  --color-blue: #3761ee;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+}

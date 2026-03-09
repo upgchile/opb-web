@@ -1,0 +1,116 @@
+---
+const empresaLinks = [
+  { href: "#empresa", label: "Sobre Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#noticias", label: "Noticias" },
+  { href: "#contacto", label: "Contacto" },
+];
+
+const soporteLinks = [
+  { href: "#opb360", label: "OPB 360\u00B0" },
+  { href: "#", label: "SRC Platform" },
+  { href: "#", label: "Soporte Tecnico" },
+  { href: "#", label: "Preguntas Frecuentes" },
+];
+---
+
+<footer id="contacto" class="bg-navy-dark pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
+      <!-- Column 1: Logo & Description -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="#inicio" class="inline-flex items-center gap-1 mb-4">
+          <span class="text-2xl font-bold text-white font-[family-name:var(--font-inter)]">OPB</span>
+          <span class="text-lg text-white/60 font-[family-name:var(--font-inter)]">Logistics</span>
+        </a>
+        <p class="text-sm text-white/50 font-[family-name:var(--font-poppins)] leading-relaxed max-w-xs">
+          Logistica naviera de clase mundial. Conectamos Chile con los principales mercados del mundo.
+        </p>
+      </div>
+
+      <!-- Column 2: Empresa -->
+      <div>
+        <h4 class="text-sm font-semibold text-white font-[family-name:var(--font-inter)] uppercase tracking-wider mb-4">
+          Empresa
+        </h4>
+        <ul class="space-y-3">
+          {empresaLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-white/50 hover:text-white transition-colors font-[family-name:var(--font-poppins)]"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3: Soporte -->
+      <div>
+        <h4 class="text-sm font-semibold text-white font-[family-name:var(--font-inter)] uppercase tracking-wider mb-4">
+          Soporte
+        </h4>
+        <ul class="space-y-3">
+          {soporteLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-white/50 hover:text-white transition-colors font-[family-name:var(--font-poppins)]"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4: Contacto -->
+      <div>
+        <h4 class="text-sm font-semibold text-white font-[family-name:var(--font-inter)] uppercase tracking-wider mb-4">
+          Contacto
+        </h4>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="tel:+56228846709"
+              class="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors font-[family-name:var(--font-poppins)]"
+            >
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              +56 22 884 6709
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:contacto@opb.cl"
+              class="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors font-[family-name:var(--font-poppins)]"
+            >
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              contacto@opb.cl
+            </a>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-white/50 font-[family-name:var(--font-poppins)]">
+            <svg class="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Concon &middot; Santiago &middot; Valparaiso
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-white/10 pt-8">
+      <p class="text-center text-sm text-white/30 font-[family-name:var(--font-poppins)]">
+        &copy; 2026 OPB Logistics. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

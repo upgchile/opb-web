@@ -1,0 +1,155 @@
+---
+const navLinks = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#empresa", label: "Empresa" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#itinerarios", label: "Itinerarios" },
+  { href: "#noticias", label: "Noticias" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18 lg:h-20">
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-1 shrink-0">
+        <span class="text-2xl font-bold text-white font-[family-name:var(--font-inter)]">OPB</span>
+        <span class="text-lg text-white/70 font-[family-name:var(--font-inter)]">Logistics</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-3 py-2 text-sm text-white/70 hover:text-white transition-colors rounded-lg hover:bg-white/5 font-[family-name:var(--font-poppins)]"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop Buttons -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a
+          href="#opb360"
+          class="px-4 py-2 text-sm text-white border border-white/20 rounded-lg hover:bg-white/10 transition-colors font-[family-name:var(--font-inter)] font-medium"
+        >
+          <!-- globe icon -->
+          <span class="inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            OPB 360&deg;
+          </span>
+        </a>
+        <a
+          href="#"
+          class="px-4 py-2 text-sm text-white bg-red rounded-lg hover:bg-red/90 transition-colors font-[family-name:var(--font-inter)] font-medium"
+        >
+          <span class="inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+            SRC Platform
+          </span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button
+        id="menu-toggle"
+        class="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+        aria-label="Abrir menu"
+      >
+        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 top-18 bg-navy/95 backdrop-blur-xl -translate-x-full transition-transform duration-300 ease-in-out"
+  >
+    <nav class="flex flex-col p-6 gap-1">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link px-4 py-3 text-lg text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-colors font-[family-name:var(--font-poppins)]"
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="mt-6 pt-6 border-t border-white/10 flex flex-col gap-3">
+        <a
+          href="#opb360"
+          class="mobile-nav-link px-4 py-3 text-center text-white border border-white/20 rounded-xl hover:bg-white/10 transition-colors font-[family-name:var(--font-inter)] font-medium"
+        >
+          OPB 360&deg;
+        </a>
+        <a
+          href="#"
+          class="mobile-nav-link px-4 py-3 text-center text-white bg-red rounded-xl hover:bg-red/90 transition-colors font-[family-name:var(--font-inter)] font-medium"
+        >
+          SRC Platform
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("main-header") as HTMLElement;
+  const menuToggle = document.getElementById("menu-toggle") as HTMLButtonElement;
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
+  const menuIcon = document.getElementById("menu-icon") as SVGElement;
+  const closeIcon = document.getElementById("close-icon") as SVGElement;
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+  let isMenuOpen = false;
+
+  // Scroll-based header background
+  function updateHeader() {
+    if (window.scrollY > 60) {
+      header.classList.add("bg-navy/95", "backdrop-blur-xl", "shadow-lg", "shadow-navy-dark/20");
+    } else {
+      header.classList.remove("bg-navy/95", "backdrop-blur-xl", "shadow-lg", "shadow-navy-dark/20");
+    }
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader();
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu.classList.remove("-translate-x-full");
+      mobileMenu.classList.add("translate-x-0");
+      menuIcon.classList.add("hidden");
+      closeIcon.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    } else {
+      mobileMenu.classList.add("-translate-x-full");
+      mobileMenu.classList.remove("translate-x-0");
+      menuIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+  }
+
+  menuToggle.addEventListener("click", toggleMenu);
+
+  // Close menu on link click
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMenuOpen) toggleMenu();
+    });
+  });
+</script>

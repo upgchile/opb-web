@@ -1,0 +1,65 @@
+---
+const highlights = [
+  "Alianzas estrategicas con mas de 50 navieras internacionales",
+  "Especializacion en cargas refrigeradas y congeladas",
+  "Presencia en Concon, Santiago y Valparaiso",
+  "Equipo bilingue con experiencia en comercio exterior",
+];
+---
+
+<section id="empresa" class="py-20 lg:py-28 bg-[#F8FAFC]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Image -->
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative rounded-2xl overflow-hidden aspect-[4/3]">
+          <img
+            src="https://images.unsplash.com/photo-1736953072460-a481e0911230?w=1080&q=80"
+            alt="Operaciones portuarias OPB Logistics"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <!-- Overlay accent -->
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red via-blue to-cyan"></div>
+        </div>
+      </div>
+
+      <!-- Text Content -->
+      <div class="order-1 lg:order-2">
+        <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy/5 border border-navy/10 mb-6">
+          <span class="w-2 h-2 bg-navy rounded-full"></span>
+          <span class="text-sm text-navy font-[family-name:var(--font-inter)] font-medium">Nuestra Empresa</span>
+        </div>
+
+        <h2 class="reveal text-[26px] lg:text-[32px] font-bold text-navy font-[family-name:var(--font-inter)] leading-tight mb-6">
+          Dedicacion exclusiva a la logistica naviera
+        </h2>
+
+        <p class="reveal text-base text-gray-600 font-[family-name:var(--font-poppins)] leading-relaxed mb-4">
+          OPB Logistics es una empresa chilena con mas de 15 anos de trayectoria en el comercio
+          exterior. Nos especializamos en la coordinacion integral de embarques maritimos,
+          brindando soluciones a medida para exportadores e importadores.
+        </p>
+
+        <p class="reveal text-base text-gray-600 font-[family-name:var(--font-poppins)] leading-relaxed mb-8">
+          Nuestro compromiso es ofrecer un servicio personalizado, transparente y eficiente,
+          respaldado por tecnologia de vanguardia y un equipo humano altamente capacitado.
+        </p>
+
+        <!-- Highlights -->
+        <ul class="space-y-3">
+          {highlights.map((item) => (
+            <li class="reveal flex items-start gap-3">
+              <span class="mt-1 w-5 h-5 rounded-full bg-cyan/10 flex items-center justify-center shrink-0">
+                <svg class="w-3 h-3 text-cyan" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span class="text-sm text-gray-700 font-[family-name:var(--font-poppins)]">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
