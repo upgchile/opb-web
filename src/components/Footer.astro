@@ -7,8 +7,8 @@ const empresaLinks = [
 ];
 
 const soporteLinks = [
-  { href: "#opb360", label: "OPB 360\u00B0" },
-  { href: "#", label: "SRC Platform" },
+  { href: "https://prod.opb.cl/", label: "OPB 360\u00B0", external: true },
+  { href: "https://opbs.opb.cl/prod", label: "SRC Platform", external: true },
   { href: "#", label: "Soporte Tecnico" },
   { href: "#", label: "Preguntas Frecuentes" },
 ];
@@ -56,6 +56,8 @@ const soporteLinks = [
             <li>
               <a
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 class="text-sm text-white/50 hover:text-white transition-colors font-[family-name:var(--font-poppins)]"
               >
                 {link.label}

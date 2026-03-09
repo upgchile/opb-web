@@ -3,7 +3,9 @@ const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#empresa", label: "Empresa" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#itinerarios", label: "Itinerarios" },
+  { href: "https://www.opb.cl/wp-content/uploads/2026/02/Itinerario-Liner-Semana-9-2026.xlsx", label: "Itinerarios Liner", external: true },
+  { href: "https://www.opb.cl/wp-content/uploads/2026/02/Itinerarios-Charter-OPB-SEM-09-2026.pdf", label: "Itinerarios Charter", external: true },
+  { href: "https://opbs.opb.cl/prod", label: "Acceso SRC", external: true },
   { href: "#noticias", label: "Noticias" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -25,6 +27,8 @@ const navLinks = [
         {navLinks.map((link) => (
           <a
             href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
             class="px-3 py-2 text-sm text-white/70 hover:text-white transition-colors rounded-lg hover:bg-white/5 font-[family-name:var(--font-poppins)]"
           >
             {link.label}
@@ -35,17 +39,20 @@ const navLinks = [
       <!-- Desktop Buttons -->
       <div class="hidden lg:flex items-center gap-3">
         <a
-          href="#opb360"
+          href="https://prod.opb.cl/"
+          target="_blank"
+          rel="noopener noreferrer"
           class="px-4 py-2 text-sm text-white border border-white/20 rounded-lg hover:bg-white/10 transition-colors font-[family-name:var(--font-inter)] font-medium"
         >
-          <!-- globe icon -->
           <span class="inline-flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             OPB 360&deg;
           </span>
         </a>
         <a
-          href="#"
+          href="https://opbs.opb.cl/prod"
+          target="_blank"
+          rel="noopener noreferrer"
           class="px-4 py-2 text-sm text-white bg-red rounded-lg hover:bg-red/90 transition-colors font-[family-name:var(--font-inter)] font-medium"
         >
           <span class="inline-flex items-center gap-2">
@@ -80,6 +87,8 @@ const navLinks = [
       {navLinks.map((link) => (
         <a
           href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noopener noreferrer" : undefined}
           class="mobile-nav-link px-4 py-3 text-lg text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-colors font-[family-name:var(--font-poppins)]"
         >
           {link.label}
@@ -87,13 +96,17 @@ const navLinks = [
       ))}
       <div class="mt-6 pt-6 border-t border-white/10 flex flex-col gap-3">
         <a
-          href="#opb360"
+          href="https://prod.opb.cl/"
+          target="_blank"
+          rel="noopener noreferrer"
           class="mobile-nav-link px-4 py-3 text-center text-white border border-white/20 rounded-xl hover:bg-white/10 transition-colors font-[family-name:var(--font-inter)] font-medium"
         >
           OPB 360&deg;
         </a>
         <a
-          href="#"
+          href="https://opbs.opb.cl/prod"
+          target="_blank"
+          rel="noopener noreferrer"
           class="mobile-nav-link px-4 py-3 text-center text-white bg-red rounded-xl hover:bg-red/90 transition-colors font-[family-name:var(--font-inter)] font-medium"
         >
           SRC Platform
