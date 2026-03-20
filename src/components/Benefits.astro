@@ -2,7 +2,7 @@
 const benefits = [
   {
     title: "Eficiencia Operativa",
-    description: "Automatiza procesos manuales y reduce tiempos de gestion hasta en un 60%.",
+    description: "Menos correos, planillas y reprocesos. Informacion sin intervencion manual.",
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
     bg: "bg-[#FEF2F2]",
     border: "border-[#FECACA]",
@@ -11,7 +11,7 @@ const benefits = [
   },
   {
     title: "Reduccion de Errores",
-    description: "Validacion automatica de documentos y datos reduce errores humanos al minimo.",
+    description: "La integracion total evita duplicidades en documentacion y altos costos.",
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
     bg: "bg-[#EFF6FF]",
     border: "border-[#BFDBFE]",
@@ -19,8 +19,8 @@ const benefits = [
     iconBg: "bg-blue/10",
   },
   {
-    title: "Trazabilidad Total",
-    description: "Seguimiento completo de cada contenedor desde origen hasta destino final.",
+    title: "Trazabilidad Real",
+    description: "Notificaciones automaticas de avance a clientes via OPB 360&deg; Tracking.",
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
     bg: "bg-[#ECFDF5]",
     border: "border-[#A7F3D0]",
@@ -28,13 +28,22 @@ const benefits = [
     iconBg: "bg-emerald-100",
   },
   {
-    title: "Dashboards Power BI",
-    description: "Visualiza KPIs, costos y rendimiento en tiempo real con reportes interactivos.",
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+    title: "Transparencia Financiera",
+    description: "Todo servicio queda registrado, verificable y auditado.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
     bg: "bg-[#FFF7ED]",
     border: "border-[#FED7AA]",
     iconColor: "text-orange-500",
     iconBg: "bg-orange-100",
+  },
+  {
+    title: "Mejor Toma de Decisiones",
+    description: "Perspectiva integral basada en datos, no en intuiciones.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+    bg: "bg-[#F5F3FF]",
+    border: "border-[#DDD6FE]",
+    iconColor: "text-purple-600",
+    iconBg: "bg-purple-100",
   },
 ];
 ---
@@ -42,16 +51,38 @@ const benefits = [
 <section class="py-20 lg:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan/5 border border-cyan/10 mb-6">
+        <span class="w-2 h-2 bg-cyan rounded-full"></span>
+        <span class="text-sm text-navy font-[family-name:var(--font-inter)] font-medium">Beneficios</span>
+      </div>
       <h2 class="reveal text-[26px] lg:text-[36px] font-bold text-navy font-[family-name:var(--font-inter)] leading-tight mb-4">
-        Beneficios que transforman tu operacion
+        El ecosistema de eficiencia OPB 360&deg;
       </h2>
       <p class="reveal text-base text-gray-500 font-[family-name:var(--font-poppins)] max-w-2xl mx-auto">
-        Cada modulo de OPB 360 esta disenado para optimizar un aspecto clave de tu cadena logistica.
+        Cada modulo esta disenado para optimizar un aspecto clave de tu cadena logistica.
       </p>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-      {benefits.map((b) => (
+    <!-- Top row: 3 cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5 mb-4 lg:mb-5">
+      {benefits.slice(0, 3).map((b) => (
+        <div class:list={["reveal rounded-2xl border p-6 transition-all duration-300 hover:shadow-lg", b.bg, b.border]}>
+          <div class:list={["w-12 h-12 rounded-xl flex items-center justify-center mb-4", b.iconBg]}>
+            <span class={b.iconColor} set:html={b.icon} />
+          </div>
+          <h3 class="text-base lg:text-lg font-semibold text-navy font-[family-name:var(--font-inter)] mb-2">
+            {b.title}
+          </h3>
+          <p class="text-sm text-gray-500 font-[family-name:var(--font-poppins)] leading-relaxed">
+            {b.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom row: 2 cards centered -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5 max-w-2xl mx-auto">
+      {benefits.slice(3).map((b) => (
         <div class:list={["reveal rounded-2xl border p-6 transition-all duration-300 hover:shadow-lg", b.bg, b.border]}>
           <div class:list={["w-12 h-12 rounded-xl flex items-center justify-center mb-4", b.iconBg]}>
             <span class={b.iconColor} set:html={b.icon} />

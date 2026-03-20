@@ -1,0 +1,97 @@
+---
+const metrics = [
+  {
+    title: "Cumplimiento de Planificacion",
+    value: "92%",
+    description: "Operaciones dentro del margen de tiempo esperado.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
+    color: "cyan",
+  },
+  {
+    title: "Ciclo Total Transporte",
+    value: "8h 30m",
+    description: "Medicion end-to-end: deposito, planta y puerto.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    color: "blue",
+  },
+  {
+    title: "Horas de Espera",
+    value: "4.5h",
+    description: "Deteccion de cuellos de botella en plantas.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/></svg>',
+    color: "amber",
+  },
+  {
+    title: "Sobreestadia",
+    value: "$0",
+    description: "Control estricto de horas para evitar multas.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    color: "red",
+  },
+  {
+    title: "Servicios Extraordinarios",
+    value: "+$450",
+    description: "Registro transparente de costos adicionales.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    color: "green",
+  },
+  {
+    title: "Incidencias",
+    value: "0",
+    description: "Categorizacion de problemas para mejora continua.",
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+    color: "purple",
+  },
+];
+
+const colorMap: Record<string, { text: string; bg: string; border: string; value: string }> = {
+  cyan: { text: "text-cyan", bg: "bg-cyan/10", border: "border-cyan/20", value: "text-cyan" },
+  blue: { text: "text-blue", bg: "bg-blue/10", border: "border-blue/20", value: "text-blue" },
+  amber: { text: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/20", value: "text-amber-500" },
+  red: { text: "text-red", bg: "bg-red/10", border: "border-red/20", value: "text-red" },
+  green: { text: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/20", value: "text-emerald-500" },
+  purple: { text: "text-purple-400", bg: "bg-purple-400/10", border: "border-purple-400/20", value: "text-purple-400" },
+};
+---
+
+<section class="py-20 lg:py-28 bg-gradient-to-b from-navy-dark to-navy relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-14 lg:mb-20">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan/30 bg-cyan/5 mb-6">
+        <span class="w-2 h-2 bg-cyan rounded-full"></span>
+        <span class="text-sm text-cyan font-[family-name:var(--font-inter)] font-medium">Analisis Estrategico</span>
+      </div>
+      <h2 class="reveal text-[26px] lg:text-[36px] font-bold text-white font-[family-name:var(--font-inter)] leading-tight mb-4">
+        De la ejecucion al analisis estrategico
+      </h2>
+      <p class="reveal text-base text-white/50 font-[family-name:var(--font-poppins)] max-w-2xl mx-auto">
+        Evalue desempeno, identifique cuellos de botella y optimice con dashboards avanzados en Power BI.
+      </p>
+    </div>
+
+    <!-- KPI Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+      {metrics.map((m) => (
+        <div class="reveal backdrop-blur-xl bg-white/[0.04] border border-white/[0.08] rounded-2xl p-5 lg:p-6 hover:bg-white/[0.07] transition-all duration-300">
+          <div class="flex items-center gap-3 mb-4">
+            <div class:list={["w-10 h-10 rounded-xl flex items-center justify-center", colorMap[m.color].bg]}>
+              <span class={colorMap[m.color].text} set:html={m.icon} />
+            </div>
+            <span class:list={["text-2xl lg:text-3xl font-bold font-[family-name:var(--font-inter)]", colorMap[m.color].value]}>
+              {m.value}
+            </span>
+          </div>
+          <h3 class="text-sm lg:text-base font-semibold text-white font-[family-name:var(--font-inter)] mb-1">
+            {m.title}
+          </h3>
+          <p class="text-xs lg:text-sm text-white/40 font-[family-name:var(--font-poppins)] leading-relaxed">
+            {m.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

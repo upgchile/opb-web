@@ -1,0 +1,117 @@
+---
+const steps = [
+  {
+    title: "Llegada a Deposito",
+    description: "Inicio del ciclo terrestre desde el deposito de la naviera.",
+    icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/></svg>',
+  },
+  {
+    title: "Retiro (Gate Out)",
+    description: "Retiro del contenedor y registro de sello.",
+    icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+  },
+  {
+    title: "Ingreso a Planta",
+    description: "Arribo y registro de tiempos operativos.",
+    icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  },
+  {
+    title: "Salida de Planta",
+    description: "Fin del carguio y generacion de horario proyectado de llegada.",
+    icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>',
+  },
+  {
+    title: "Puerto y Stacking",
+    description: "Validacion documental anticipada y confirmacion de ingreso.",
+    icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
+  },
+  {
+    title: "Salida de Puerto",
+    description: "Fin del ciclo terrestre desde el puerto.",
+    icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20a5 5 0 0 0 5-1 5 5 0 0 0 5 1 5 5 0 0 0 5-1 5 5 0 0 0 5 1"/><path d="M19 17V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v10"/><path d="M12 2v3"/></svg>',
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-14 lg:mb-20">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy/5 border border-navy/10 mb-6">
+        <span class="w-2 h-2 bg-cyan rounded-full"></span>
+        <span class="text-sm text-navy font-[family-name:var(--font-inter)] font-medium">Transporte y Mapeo Fisico</span>
+      </div>
+      <h2 class="reveal text-[26px] lg:text-[36px] font-bold text-navy font-[family-name:var(--font-inter)] leading-tight mb-4">
+        Trazabilidad completa del contenedor
+      </h2>
+      <p class="reveal text-base text-gray-500 font-[family-name:var(--font-poppins)] max-w-2xl mx-auto">
+        6 checkpoints customizables con notificaciones automaticas a clientes via OPB 360&deg; Tracking.
+      </p>
+    </div>
+
+    <!-- Desktop Timeline -->
+    <div class="hidden lg:block mb-12">
+      <div class="relative">
+        <!-- Connection line -->
+        <div class="absolute top-[52px] left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-cyan via-blue to-navy/30"></div>
+
+        <div class="grid grid-cols-6 gap-4">
+          {steps.map((step, i) => (
+            <div class="reveal flex flex-col items-center text-center">
+              {/* Dot */}
+              <div class="relative z-10 w-10 h-10 rounded-full bg-white border-2 border-cyan shadow-lg shadow-cyan/20 flex items-center justify-center mb-4">
+                <span class="text-cyan" set:html={step.icon} />
+              </div>
+              {/* Number badge */}
+              <span class="text-xs font-mono font-bold text-cyan/60 mb-2">{String(i + 1).padStart(2, '0')}</span>
+              {/* Content */}
+              <h3 class="text-sm font-semibold text-navy font-[family-name:var(--font-inter)] mb-1.5 leading-tight">
+                {step.title}
+              </h3>
+              <p class="text-xs text-gray-500 font-[family-name:var(--font-poppins)] leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile: Vertical -->
+    <div class="lg:hidden space-y-0 mb-12">
+      {steps.map((step, i) => (
+        <div class="reveal flex gap-4">
+          {/* Vertical line + dot */}
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-white border-2 border-cyan shadow-md flex items-center justify-center shrink-0">
+              <span class="text-cyan" set:html={step.icon} />
+            </div>
+            {i < steps.length - 1 && (
+              <div class="w-0.5 flex-1 bg-gradient-to-b from-cyan/40 to-cyan/10 my-1"></div>
+            )}
+          </div>
+          {/* Content */}
+          <div class="pb-8">
+            <span class="text-xs font-mono font-bold text-cyan/60">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="text-base font-semibold text-navy font-[family-name:var(--font-inter)] mb-1">
+              {step.title}
+            </h3>
+            <p class="text-sm text-gray-500 font-[family-name:var(--font-poppins)] leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom callout -->
+    <div class="reveal text-center">
+      <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-navy/5 border border-navy/10">
+        <svg class="w-5 h-5 text-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="text-sm text-navy font-[family-name:var(--font-poppins)] font-medium">
+          Notificaciones automaticas a clientes via OPB 360&deg; Tracking
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

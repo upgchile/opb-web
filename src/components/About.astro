@@ -2,8 +2,13 @@
 const highlights = [
   "Alianzas estrategicas con mas de 50 navieras internacionales",
   "Especializacion en cargas refrigeradas y congeladas",
-  "Presencia en Concon, Santiago y Valparaiso",
   "Equipo bilingue con experiencia en comercio exterior",
+];
+
+const offices = [
+  { city: "Con-Con", role: "Sede Central" },
+  { city: "Santiago", role: "Las Condes" },
+  { city: "Valparaiso", role: "Agencia de Embarque" },
 ];
 ---
 
@@ -31,9 +36,13 @@ const highlights = [
           <span class="text-sm text-navy font-[family-name:var(--font-inter)] font-medium">Nuestra Empresa</span>
         </div>
 
-        <h2 class="reveal text-[26px] lg:text-[32px] font-bold text-navy font-[family-name:var(--font-inter)] leading-tight mb-6">
-          Dedicacion exclusiva a la logistica naviera
+        <h2 class="reveal text-[26px] lg:text-[32px] font-bold text-navy font-[family-name:var(--font-inter)] leading-tight mb-3">
+          Gestion Logistica End-to-End para Cargas
         </h2>
+
+        <p class="reveal text-base text-blue font-[family-name:var(--font-inter)] font-medium mb-6">
+          Conectando el agenciamiento, el transporte y el control de datos.
+        </p>
 
         <p class="reveal text-base text-gray-600 font-[family-name:var(--font-poppins)] leading-relaxed mb-4">
           OPB Logistics es una empresa chilena con mas de 15 anos de trayectoria en el comercio
@@ -47,7 +56,7 @@ const highlights = [
         </p>
 
         <!-- Highlights -->
-        <ul class="space-y-3">
+        <ul class="space-y-3 mb-8">
           {highlights.map((item) => (
             <li class="reveal flex items-start gap-3">
               <span class="mt-1 w-5 h-5 rounded-full bg-cyan/10 flex items-center justify-center shrink-0">
@@ -59,6 +68,16 @@ const highlights = [
             </li>
           ))}
         </ul>
+
+        <!-- Offices -->
+        <div class="reveal grid grid-cols-3 gap-3">
+          {offices.map((office) => (
+            <div class="text-center p-3 rounded-xl bg-navy/5 border border-navy/8">
+              <p class="text-sm font-semibold text-navy font-[family-name:var(--font-inter)]">{office.city}</p>
+              <p class="text-xs text-gray-500 font-[family-name:var(--font-poppins)]">{office.role}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
