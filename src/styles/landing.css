@@ -2470,3 +2470,128 @@ footer {
     transition: none;
   }
 }
+
+/* ============================================================
+   ITINERARIOS — demo auto-play (cursor fantasma sobre el HTML real)
+   ============================================================ */
+#itinerarios .search-card {
+  position: relative;
+}
+
+.itin-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(40px, 40px);
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+  filter: drop-shadow(0 3px 7px rgba(6, 27, 56, 0.45));
+  will-change: transform;
+}
+
+.itin-cursor.show {
+  opacity: 1;
+}
+
+.itin-cursor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.itin-cursor .ring {
+  position: absolute;
+  inset: -7px;
+  border-radius: 999px;
+  border: 2px solid var(--pink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.itin-cursor.click .ring {
+  animation: itin-click 0.5s ease-out;
+}
+
+@keyframes itin-click {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+/* Campo resaltado mientras el demo escribe */
+.field.demo-active .input-wrap input {
+  background: #fff;
+  border-color: rgba(0, 61, 119, 0.45);
+  box-shadow: 0 0 0 4px rgba(0, 61, 119, 0.08);
+}
+
+/* Botón al "click" del demo */
+.btn-search.demo-press {
+  transform: translateY(1px) scale(0.97);
+  filter: brightness(0.95);
+}
+
+/* Resultados entran suave */
+.itin-results.show {
+  animation: itin-results-in 0.5s var(--ease);
+}
+
+@keyframes itin-results-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Badge "Demo en vivo" */
+.itin-demo-badge {
+  position: absolute;
+  top: 1.35rem;
+  right: 4.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(225, 67, 108, 0.14);
+  border: 1px solid rgba(225, 67, 108, 0.3);
+  color: #ffadc0;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.34rem 0.62rem;
+  border-radius: 999px;
+}
+
+.itin-demo-badge i {
+  color: var(--pink);
+}
+
+@media (max-width: 720px) {
+  .itin-demo-badge {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itin-cursor {
+    display: none;
+  }
+  .itin-results.show {
+    animation: none;
+  }
+}

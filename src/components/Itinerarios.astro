@@ -26,6 +26,14 @@
         </div>
       </div>
       <div class="itin-results" id="itin-results"><p class="results-msg" id="results-msg"><i class="fa-solid fa-circle-notch fa-spin"></i> Buscando itinerarios disponibles...</p></div>
+
+      <!-- Cursor fantasma del demo auto-play (decorativo) -->
+      <div class="itin-cursor" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 2.5l13.5 6.8-5.9 1.6-3.4 5.9L5 2.5z" fill="#fff" stroke="#0A1628" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+        <span class="ring"></span>
+      </div>
+
+      <span class="itin-demo-badge" aria-hidden="true"><i class="fa-solid fa-circle-play"></i> Demo en vivo</span>
     </div>
   </div>
 </section>
@@ -65,4 +73,104 @@
     resultsDiv.classList.remove('show');
     resultsDiv.innerHTML = '<p class="results-msg" id="results-msg"><i class="fa-solid fa-circle-notch fa-spin"></i> Buscando itinerarios disponibles...</p>';
   }
+
+  // Exponer a window: el <script> de Astro es un módulo, así los onclick="" de
+  // los botones funcionan para un usuario real (antes quedaban rotos).
+  window.buscarItinerarios = buscarItinerarios;
+  window.limpiarFiltros = limpiarFiltros;
+
+  // Demo auto-play: cursor fantasma que recorre el buscador, escribe y busca.
+  (function itinDemo() {
+    const section = document.getElementById("itinerarios");
+    if (!section) return;
+    const card = section.querySelector(".search-card");
+    const cursor = section.querySelector(".itin-cursor");
+    if (!card || !cursor) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // form queda usable
+
+    let paused = false;
+    let started = false;
+    card.addEventListener("pointerenter", () => (paused = true));
+    card.addEventListener("pointerleave", () => (paused = false));
+
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const holdIfPaused = async () => {
+      while (paused) await sleep(200);
+    };
+
+    function moveTo(el, padX) {
+      const c = card.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
+      const x = r.left - c.left + (padX != null ? padX : r.width / 2);
+      const y = r.top - c.top + r.height / 2;
+      cursor.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    async function typeInto(id, text) {
+      const input = document.getElementById(id);
+      const field = input.closest(".field");
+      field.classList.add("demo-active");
+      input.value = "";
+      for (const ch of text) {
+        await holdIfPaused();
+        input.value += ch;
+        await sleep(58);
+      }
+      await sleep(320);
+      field.classList.remove("demo-active");
+    }
+
+    async function loop() {
+      while (true) {
+        window.limpiarFiltros();
+        cursor.classList.add("show");
+        await holdIfPaused();
+
+        moveTo(document.getElementById("f-pol"), 24);
+        await sleep(820);
+        await typeInto("f-pol", "San Antonio");
+
+        moveTo(document.getElementById("f-pod"), 24);
+        await sleep(720);
+        await typeInto("f-pod", "Rotterdam");
+
+        const etd = document.getElementById("f-etd-desde");
+        moveTo(etd, 24);
+        await sleep(700);
+        await holdIfPaused();
+        etd.closest(".field").classList.add("demo-active");
+        etd.value = "2026-01-22";
+        await sleep(520);
+        etd.closest(".field").classList.remove("demo-active");
+
+        const btn = card.querySelector(".btn-search");
+        moveTo(btn);
+        await sleep(700);
+        await holdIfPaused();
+        cursor.classList.add("click");
+        btn.classList.add("demo-press");
+        setTimeout(() => cursor.classList.remove("click"), 500);
+        setTimeout(() => btn.classList.remove("demo-press"), 220);
+        window.buscarItinerarios();
+
+        await sleep(3400);
+        await holdIfPaused();
+        cursor.classList.remove("show");
+        await sleep(1500);
+      }
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !started) {
+            started = true;
+            loop();
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(card);
+  })();
 </script>
