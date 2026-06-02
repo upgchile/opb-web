@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 170" width="520" height="170">
+  <defs>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3761ee"/>
+      <stop offset="100%" stop-color="#df3629"/>
+    </linearGradient>
+  </defs>
+
+  <!-- OPB text -->
+  <text x="24" y="112" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" font-size="80" font-weight="800" letter-spacing="-2">OPB</text>
+
+  <!-- 360 inside orbit ring -->
+  <g transform="translate(355, 82)">
+    <!-- Full ghost circle -->
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#001e56" stroke-width="1.5" opacity="0.06"/>
+
+    <!-- Top-right quadrant arc (short, stays in bounds) -->
+    <path d="M 0,-60 A 60,60 0 0,1 60,0" fill="none" stroke="#df3629" stroke-width="4" stroke-linecap="round"/>
+    <!-- Right-bottom quadrant -->
+    <path d="M 60,0 A 60,60 0 0,1 0,60" fill="none" stroke="#df3629" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <!-- Bottom-left quadrant -->
+    <path d="M 0,60 A 60,60 0 0,1 -60,0" fill="none" stroke="#3761ee" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+    <!-- Left-top quadrant (gap + arrow) -->
+    <path d="M -60,0 A 60,60 0 0,1 -20,-57" fill="none" stroke="#3761ee" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+
+    <!-- Arrow at gap end pointing up-right -->
+    <polygon points="-16,-58 -26,-50 -18,-48" fill="#3761ee" opacity="0.6"/>
+
+    <!-- 360 text -->
+    <text x="0" y="14" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#df3629" font-size="52" font-weight="700" text-anchor="middle" letter-spacing="-1">360</text>
+
+    <!-- Degree symbol -->
+    <circle cx="38" cy="-12" r="5" fill="none" stroke="#df3629" stroke-width="2.5"/>
+  </g>
+
+  <!-- Tagline -->
+  <text x="24" y="160" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" opacity="0.35" font-size="10" font-weight="600" letter-spacing="4">ECOSISTEMA LOGISTICO INTEGRAL</text>
+</svg>

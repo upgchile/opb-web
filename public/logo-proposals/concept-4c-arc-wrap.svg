@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 130" width="480" height="130">
+  <defs>
+    <linearGradient id="arcGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6EE2F5"/>
+      <stop offset="50%" stop-color="#3761ee"/>
+      <stop offset="100%" stop-color="#df3629"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left vertical accent bar (3 phases stacked) -->
+  <rect x="16" y="20" width="4" height="28" rx="2" fill="#6EE2F5"/>
+  <rect x="16" y="52" width="4" height="28" rx="2" fill="#3761ee"/>
+  <rect x="16" y="84" width="4" height="28" rx="2" fill="#df3629"/>
+
+  <!-- OPB text -->
+  <text x="34" y="86" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" font-size="70" font-weight="800" letter-spacing="-2">OPB</text>
+
+  <!-- Thin vertical separator -->
+  <line x1="240" y1="26" x2="240" y2="100" stroke="#001e56" stroke-width="1.2" opacity="0.15"/>
+
+  <!-- 360° text -->
+  <text x="258" y="86" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#df3629" font-size="70" font-weight="700" letter-spacing="-1">360°</text>
+
+  <!-- Tagline -->
+  <text x="34" y="120" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" opacity="0.35" font-size="10" font-weight="600" letter-spacing="3.5">LOGISTICA INTEGRAL PARA CARGAS ESPECIALIZADAS</text>
+</svg>

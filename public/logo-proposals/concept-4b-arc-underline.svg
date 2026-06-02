@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 130" width="460" height="130">
+  <defs>
+    <linearGradient id="arcGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6EE2F5"/>
+      <stop offset="45%" stop-color="#3761ee"/>
+      <stop offset="100%" stop-color="#df3629"/>
+    </linearGradient>
+  </defs>
+
+  <!-- OPB text -->
+  <text x="24" y="72" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" font-size="68" font-weight="800" letter-spacing="-2">OPB</text>
+
+  <!-- 360° text -->
+  <text x="245" y="72" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#df3629" font-size="68" font-weight="700" letter-spacing="-1">360°</text>
+
+  <!-- Gradient underline — smooth flat arc -->
+  <path d="M 24,88 Q 230,100 436,88" fill="none" stroke="url(#arcGrad2)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Three small phase dots on the line -->
+  <circle cx="24" cy="88" r="4" fill="#6EE2F5"/>
+  <circle cx="230" cy="100" r="4" fill="#3761ee"/>
+  <circle cx="436" cy="88" r="4" fill="#df3629"/>
+
+  <!-- Tagline -->
+  <text x="24" y="124" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" opacity="0.35" font-size="10" font-weight="600" letter-spacing="4">ECOSISTEMA LOGISTICO INTEGRAL</text>
+</svg>

@@ -1,4 +1,7 @@
 ---
+import "../styles/global.css";
+import "../styles/landing.css";
+
 interface Props {
   title?: string;
   description?: string;
@@ -31,44 +34,142 @@ const {
     <meta name="twitter:description" content={description} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <title>{title}</title>
-
-    <style>
-      @import "../styles/global.css";
-    </style>
   </head>
-  <body class="bg-white text-gray-900 font-[family-name:var(--font-poppins)] antialiased overflow-x-hidden">
+  <body>
     <slot />
 
-    <!-- Intersection Observer for section reveals -->
+    <!-- Scroll reveal del cliente: .rv → .on (los .rv arrancan en opacity:0) -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("on");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".rv").forEach((el) => revealObserver.observe(el));
+    </script>
+
+    <!-- Animación 1: Control Card Progress Bar -->
+    <script>
+      (function initProgressAnimation() {
+        const progressFill = document.getElementById("progress-fill");
+        if (!progressFill) return;
+
+        const controlCard = progressFill.closest(".control-card");
+        if (!controlCard) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !progressFill.classList.contains("animate")) {
+                progressFill.classList.add("animate");
+                observer.unobserve(controlCard);
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+
+        observer.observe(controlCard);
+      })();
+    </script>
+
+    <!-- Animación 2: Contadores Stats Animados -->
+    <script>
+      (function initCounters() {
+        const stats = document.querySelectorAll(".stat strong[data-count]");
+        if (!stats.length) return;
+
+        const statsContainer = document.querySelector(".stats-shell");
+        if (!statsContainer) return;
+
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add("revealed");
-                observer.unobserve(entry.target);
+                stats.forEach((stat) => {
+                  const target = parseInt(stat.getAttribute("data-count"), 10);
+                  const suffix = stat.getAttribute("data-suffix") || "";
+                  const span = stat.querySelector("span");
+
+                  let current = 0;
+                  const increment = Math.ceil(target / 30);
+                  const interval = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                      current = target;
+                      clearInterval(interval);
+                    }
+                    const spanHtml = span ? `<span>${suffix}</span>` : "";
+                    stat.innerHTML = `${current}${spanHtml}`;
+                  }, 30);
+                });
+
+                observer.unobserve(statsContainer);
               }
             });
           },
-          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+          { threshold: 0.3 }
         );
 
-        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-      });
+        observer.observe(statsContainer);
+      })();
     </script>
 
-    <style is:global>
-      .reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
-      .revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    </style>
+    <!-- Animación 3: Sticky Stacking Cards -->
+    <script>
+      (function initStackCards() {
+        const cards = Array.from(document.querySelectorAll(".stack-card"));
+        if (!cards.length) return;
+
+        const groups = new Map();
+        cards.forEach((c) => {
+          const p = c.parentElement;
+          if (!groups.has(p)) groups.set(p, []);
+          groups.get(p).push(c);
+        });
+
+        let ticking = false;
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+
+          requestAnimationFrame(() => {
+            groups.forEach((g) => {
+              g.forEach((card, idx) => {
+                const next = g[idx + 1];
+                if (!next) {
+                  card.style.transform = "";
+                  card.style.filter = "";
+                  return;
+                }
+
+                const cr = card.getBoundingClientRect();
+                const nr = next.getBoundingClientRect();
+                const overlap = Math.max(0, cr.top + cr.height - nr.top);
+                const maxOverlap = cr.height * 0.5;
+                const progress = Math.min(1, overlap / maxOverlap);
+
+                card.style.transform = `scale(${1 - progress * 0.05})`;
+                card.style.filter = `brightness(${1 - progress * 0.12})`;
+              });
+            });
+          });
+
+          ticking = false;
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
   </body>
 </html>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
+  <defs>
+    <style>
+      .navy { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; fill: #001e56; }
+      .red { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; fill: #df3629; }
+      .sub { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; fill: #001e56; opacity: 0.4; }
+    </style>
+  </defs>
+
+  <!-- OPB text -->
+  <text x="24" y="82" class="navy" font-size="74" font-weight="800" letter-spacing="-2">OPB</text>
+
+  <!-- 360° text -->
+  <text x="255" y="82" class="red" font-size="74" font-weight="700" letter-spacing="-2">360°</text>
+
+  <!-- Three-phase arc underneath connecting OPB to 360 -->
+  <!-- Phase 1: Cyan -->
+  <path d="M 40,100 Q 40,125 120,125" fill="none" stroke="#6EE2F5" stroke-width="4" stroke-linecap="round"/>
+  <!-- Phase 2: Blue -->
+  <path d="M 120,125 Q 240,125 240,125" fill="none" stroke="#3761ee" stroke-width="4" stroke-linecap="round"/>
+  <!-- Phase 3: Red -->
+  <path d="M 240,125 Q 380,125 440,100" fill="none" stroke="#df3629" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Phase dots -->
+  <circle cx="40" cy="100" r="4" fill="#6EE2F5"/>
+  <circle cx="240" cy="125" r="4" fill="#3761ee"/>
+  <circle cx="440" cy="100" r="4" fill="#df3629"/>
+
+  <!-- Phase labels micro -->
+  <text x="60" y="142" class="sub" font-size="8" font-weight="600" letter-spacing="1.5">PLANIFICACION</text>
+  <text x="195" y="142" class="sub" font-size="8" font-weight="600" letter-spacing="1.5">EJECUCION</text>
+  <text x="365" y="142" class="sub" font-size="8" font-weight="600" letter-spacing="1.5">CIERRE</text>
+</svg>

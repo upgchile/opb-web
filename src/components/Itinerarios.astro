@@ -1,0 +1,68 @@
+---
+// Itinerarios Section - OPB Landing
+---
+
+<section id="itinerarios" class="section dark">
+  <div class="wrap">
+    <div class="section-head rv">
+      <div class="eyebrow light">Consulta de itinerarios</div>
+      <h2>Encuentra el mejor servicio para tu carga</h2>
+      <p class="lead">Filtra por puerto, naviera, nave, servicio o fechas críticas. Diseñado para que un cliente encuentre rápido la información clave antes de cotizar o reservar.</p>
+    </div>
+    <div class="search-card rv d1">
+      <div class="search-top"><div><strong>Buscador de itinerarios OPB</strong><span>Prototipo visual conectado a OPB 360°</span></div><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+      <div class="filters">
+        <div class="filter-row-1">
+          <div class="field"><label for="f-pol">Puerto Embarque (POL)</label><div class="input-wrap"><input id="f-pol" type="text" placeholder="Ej: San Antonio" /><i class="fa-solid fa-anchor"></i></div></div>
+          <div class="field"><label for="f-pod">Puerto Descarga (POD)</label><div class="input-wrap"><input id="f-pod" type="text" placeholder="Ej: Rotterdam" /><i class="fa-solid fa-location-dot"></i></div></div>
+          <div class="field"><label for="f-naviera">Naviera</label><div class="input-wrap"><input id="f-naviera" type="text" placeholder="HAPAG, CMA CGM..." /><i class="fa-solid fa-building"></i></div></div>
+          <div class="field"><label for="f-nave">Nave</label><div class="input-wrap"><input id="f-nave" type="text" placeholder="Nombre de nave" /><i class="fa-solid fa-ship"></i></div></div>
+          <div class="field"><label for="f-servicio">Servicio</label><div class="input-wrap"><input id="f-servicio" type="text" placeholder="Código servicio" /><i class="fa-solid fa-tags"></i></div></div>
+        </div>
+        <div class="filter-row-2">
+          <div class="date-box"><div class="date-box-label"><i class="fa-solid fa-plane-departure"></i> Fecha de Salida — ETD</div><div class="date-pair"><div class="field"><label for="f-etd-desde">Desde <span class="req">*</span></label><div class="input-wrap"><input id="f-etd-desde" type="date" /><i class="fa-regular fa-calendar"></i></div></div><div class="field"><label for="f-etd-hasta">Hasta</label><div class="input-wrap"><input id="f-etd-hasta" type="date" /><i class="fa-regular fa-calendar-check"></i></div></div></div></div>
+          <div class="date-box"><div class="date-box-label"><i class="fa-solid fa-plane-arrival"></i> Fecha de Llegada — ETA</div><div class="date-pair"><div class="field"><label for="f-eta-desde">Desde <span class="req">*</span></label><div class="input-wrap"><input id="f-eta-desde" type="date" /><i class="fa-regular fa-calendar"></i></div></div><div class="field"><label for="f-eta-hasta">Hasta</label><div class="input-wrap"><input id="f-eta-hasta" type="date" /><i class="fa-regular fa-calendar-check"></i></div></div></div></div>
+          <div class="action-box"><p class="note" id="filter-note"><i class="fa-solid fa-circle-info"></i> Se requiere al menos una fecha ETD o ETA para buscar.</p><button class="btn-search" onclick="buscarItinerarios()"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button><button class="btn-clear" onclick="limpiarFiltros()"><i class="fa-solid fa-rotate-left"></i> Limpiar filtros</button></div>
+        </div>
+      </div>
+      <div class="itin-results" id="itin-results"><p class="results-msg" id="results-msg"><i class="fa-solid fa-circle-notch fa-spin"></i> Buscando itinerarios disponibles...</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function buscarItinerarios(){
+    const fields = ['f-etd-desde','f-etd-hasta','f-eta-desde','f-eta-hasta'];
+    const hasDate = fields.some(id => document.getElementById(id).value);
+    const note = document.getElementById('filter-note');
+    if(!hasDate){
+      note.style.color = '#E1436C';
+      note.style.fontWeight = '900';
+      setTimeout(()=>{ note.style.color=''; note.style.fontWeight=''; }, 2800);
+      return;
+    }
+    const resultsDiv = document.getElementById('itin-results');
+    const msgEl = document.getElementById('results-msg');
+    resultsDiv.classList.add('show');
+    msgEl.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Buscando itinerarios disponibles...';
+    setTimeout(() => {
+      resultsDiv.innerHTML = `
+        <table class="result-table" aria-label="Resultados de itinerarios demo">
+          <thead><tr><th>Naviera</th><th>Nave / Viaje</th><th>Ruta</th><th>ETD</th><th>ETA</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>HAPAG-LLOYD</td><td>Santos Express 5249</td><td>San Antonio → Rotterdam</td><td>22-01-2026</td><td>09-02-2026</td><td><span class="result-pill">Disponible</span></td></tr>
+            <tr><td>CMA CGM</td><td>Andes Trader 018W</td><td>Valparaíso → Shanghai</td><td>25-01-2026</td><td>21-02-2026</td><td><span class="result-pill">Espacio abierto</span></td></tr>
+            <tr><td>ONE LINE</td><td>Pacific Bridge 112</td><td>San Antonio → Los Angeles</td><td>28-01-2026</td><td>15-02-2026</td><td><span class="result-pill">Reefer OK</span></td></tr>
+          </tbody>
+        </table>`;
+    }, 850);
+  }
+  function limpiarFiltros(){
+    ['f-pol','f-pod','f-naviera','f-nave','f-servicio','f-etd-desde','f-etd-hasta','f-eta-desde','f-eta-hasta'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.value = '';
+    });
+    const resultsDiv = document.getElementById('itin-results');
+    resultsDiv.classList.remove('show');
+    resultsDiv.innerHTML = '<p class="results-msg" id="results-msg"><i class="fa-solid fa-circle-notch fa-spin"></i> Buscando itinerarios disponibles...</p>';
+  }
+</script>

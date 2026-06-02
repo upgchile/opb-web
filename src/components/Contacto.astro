@@ -1,0 +1,36 @@
+---
+// Contacto Section - OPB Landing
+---
+
+<section id="contacto" class="section">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <div class="eyebrow">Hablemos</div>
+      <h2>Optimiza tu logística de exportación</h2>
+      <p class="lead">Cuéntanos sobre tu operación y uno de nuestros ejecutivos te contactará con una propuesta adaptada a tus necesidades.</p>
+      <div class="contact-list">
+        <div class="contact-item"><div class="contact-icon"><i class="fa-solid fa-envelope"></i></div><div><span>Correo electrónico</span><strong><a href="mailto:contacto@opb.cl">contacto@opb.cl</a></strong></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fa-solid fa-phone"></i></div><div><span>Teléfono</span><strong><a href="tel:+56228846709">+56 22 884 6709</a></strong></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div><div><span>Sede principal</span><strong>Las Pelargonias 842, Of. 1409, Concón</strong></div></div>
+      </div>
+      <div class="office-pills"><span><i class="fa-solid fa-location-dot"></i> Concón</span><span><i class="fa-solid fa-location-dot"></i> Santiago</span><span><i class="fa-solid fa-location-dot"></i> Valparaíso</span></div>
+    </div>
+    <div class="form-card rv d2">
+      <h3>Solicita una cotización sin compromiso</h3>
+      <div class="form-row"><div class="form-group"><label for="nom">Nombre</label><input id="nom" type="text" placeholder="Tu nombre" /></div><div class="form-group"><label for="emp">Empresa</label><input id="emp" type="text" placeholder="Nombre de tu empresa" /></div></div>
+      <div class="form-row"><div class="form-group"><label for="mail">Correo electrónico</label><input id="mail" type="email" placeholder="tu@empresa.cl" /></div><div class="form-group"><label for="fon">Teléfono</label><input id="fon" type="tel" placeholder="+56 9 XXXX XXXX" /></div></div>
+      <div class="form-group"><label for="srv">Servicio de interés</label><select id="srv"><option value="">Selecciona una opción</option><option>Agenciamiento naviero FCL</option><option>Agenciamiento naviero LCL</option><option>Transporte terrestre</option><option>Control documental</option><option>Palletización y embarque</option><option>Servicio integral OPB 360°</option><option>Otro / Consulta general</option></select></div>
+      <div class="form-group"><label for="msg">Cuéntanos sobre tu operación</label><textarea id="msg" placeholder="Tipo de carga, volumen aproximado, destino, temporada..."></textarea></div>
+      <button type="button" class="submit" onclick="enviar(this)">Enviar solicitud de cotización</button>
+      <p class="form-note">Respondemos dentro de las próximas 4 horas hábiles. Tu información es confidencial.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function enviar(btn){
+    btn.textContent = '✓ Solicitud enviada — Te contactaremos pronto';
+    btn.style.background = '#18824d';
+    btn.disabled = true;
+  }
+</script>

@@ -1,0 +1,5 @@
+# Cloudflare Pages headers
+# COOP relajado SOLO para que el popup de login de GitHub (Sveltia CMS) funcione.
+# "same-origin" rompe el OAuth; "same-origin-allow-popups" es lo correcto.
+/admin/*
+  Cross-Origin-Opener-Policy: same-origin-allow-popups

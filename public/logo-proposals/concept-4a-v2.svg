@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 140" width="460" height="140">
+  <defs>
+    <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6EE2F5"/>
+      <stop offset="50%" stop-color="#3761ee"/>
+      <stop offset="100%" stop-color="#df3629"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gradient arc — more curved, centered symmetrically -->
+  <path d="M 30,52 Q 230,2 430,52" fill="none" stroke="url(#arcGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- OPB text -->
+  <text x="30" y="100" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" font-size="68" font-weight="800" letter-spacing="-2">OPB</text>
+
+  <!-- 360° text — closer to OPB -->
+  <text x="240" y="100" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#df3629" font-size="68" font-weight="700" letter-spacing="-1">360°</text>
+
+  <!-- Tagline -->
+  <text x="30" y="128" font-family="Inter, Helvetica Neue, Arial, sans-serif" fill="#001e56" opacity="0.35" font-size="10" font-weight="600" letter-spacing="4">ECOSISTEMA LOGISTICO INTEGRAL</text>
+</svg>
